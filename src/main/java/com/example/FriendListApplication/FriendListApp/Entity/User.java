@@ -10,9 +10,9 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-    private String Name;
+    private String name;
 
-    private String Timezone;
+    private String timeZone;
 
     public Integer getId() {
         return id;
@@ -23,18 +23,18 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getTimezone() {
-        return Timezone;
+        return timeZone;
     }
 
     public void setTimezone(String timezone) {
-        Timezone = timezone;
+        this.timeZone = timeZone;
     }
 }
