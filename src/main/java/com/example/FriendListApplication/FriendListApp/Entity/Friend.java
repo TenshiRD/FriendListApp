@@ -1,24 +1,22 @@
 package com.example.FriendListApplication.FriendListApp.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Friend {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
 
     private String timeZone;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -30,11 +28,11 @@ public class User {
         this.name = name;
     }
 
-    public String getTimezone() {
+    public String getTimeZone() {
         return timeZone;
     }
 
     public void setTimezone(String timezone) {
-        this.timeZone = timeZone;
+        this.timeZone = timezone;
     }
 }
