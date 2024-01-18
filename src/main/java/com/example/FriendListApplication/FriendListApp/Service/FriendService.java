@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FriendService {
-
     @Autowired
     private FriendRepository friendRepository;
 
@@ -17,12 +16,15 @@ public class FriendService {
         n.setTimezone(timezone);
         friendRepository.save(n);
     }
-    public void DeleteEntry(Integer userId){
+
+    public void DeleteEntry(Long userId){
         friendRepository.deleteById(userId);
     }
+
     public void DeleteAllEntries() {
         friendRepository.deleteAll();
     }
+
     public Iterable<Friend> GetAllFriends(){
         return friendRepository.findAll();
     }

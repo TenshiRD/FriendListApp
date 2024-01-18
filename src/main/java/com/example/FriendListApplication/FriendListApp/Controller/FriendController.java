@@ -22,7 +22,7 @@ public class FriendController {
     }
 
     @DeleteMapping(path="/delete/{id}")
-    public String DeleteEntry (@PathVariable("id") Integer userId) {
+    public String DeleteEntry (@PathVariable("id") Long userId) {
         try {
             friendService.DeleteEntry(userId);
             return "Entry deleted";
