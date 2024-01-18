@@ -13,7 +13,7 @@ public class FriendController {
     private FriendRepository friendRepository;
 
     @PostMapping(path="/add")
-    public String AddNewUser (@RequestParam String name, @RequestParam String timezone) {
+    public String AddNewFriend (@RequestParam String name, @RequestParam String timezone) {
         Friend n = new Friend();
         n.setName(name);
         n.setTimezone(timezone);
@@ -22,7 +22,7 @@ public class FriendController {
     }
 
     @DeleteMapping(path="/delete/{id}")
-    public String DeleteUser (@PathVariable("id") Integer userId) {
+    public String DeleteEntry (@PathVariable("id") Integer userId) {
         try {
             friendRepository.deleteById(userId);
             return "Entry deleted";
@@ -32,13 +32,13 @@ public class FriendController {
         }
     }
     @DeleteMapping(path="/delete/all")
-    public @ResponseBody String DeleteAllUsers() {
+    public @ResponseBody String DeleteAllEntries() {
         try {
             friendRepository.deleteAll();;
             return "Entries deleted";
         } catch (Exception e) {
             e.printStackTrace();
-            return "Failed to delete entry";
+            return "Failed to delete entries";
         }
     }
 
