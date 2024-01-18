@@ -2,6 +2,7 @@ package com.example.FriendListApplication.FriendListApp.Controller;
 
 import com.example.FriendListApplication.FriendListApp.Entity.Friend;
 import com.example.FriendListApplication.FriendListApp.Repository.FriendRepository;
+import com.example.FriendListApplication.FriendListApp.Service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +12,19 @@ public class FriendController {
 
     @Autowired
     private FriendRepository friendRepository;
+    @Autowired
+    private FriendService friendService;
 
     @PostMapping(path="/add")
     public String AddNewFriend (@RequestParam String name, @RequestParam String timezone) {
-        Friend n = new Friend();
-        n.setName(name);
-        n.setTimezone(timezone);
-        friendRepository.save(n);
+        friendService.AddFriend(name, timezone);
         return "User saved";
     }
 
     @DeleteMapping(path="/delete/{id}")
     public String DeleteEntry (@PathVariable("id") Integer userId) {
         try {
-            friendRepository.deleteById(userId);
+            friendService.DeleteEntry(userId);
             return "Entry deleted";
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,18 +32,17 @@ public class FriendController {
         }
     }
     @DeleteMapping(path="/delete/all")
-    public @ResponseBody String DeleteAllEntries() {
+    public @ResponseBody String EmptyFriendList() {
         try {
-            friendRepository.deleteAll();;
+            friendService.DeleteAllEntries();
             return "Entries deleted";
         } catch (Exception e) {
             e.printStackTrace();
             return "Failed to delete entries";
         }
     }
-
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Friend> GetAllUsers() {
-        return friendRepository.findAll();
+    public @ResponseBody Iterable<Friend> GetFriendList() {
+        return friendService.GetAllFriends();
     }
 }
